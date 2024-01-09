@@ -43,6 +43,9 @@ return(
             <div className="mb-3">
                 <p>Neturite paskyros ? <Link to="/register" >Registruokites</Link></p>
             </div>
+            <div className="mb-3">
+                <p>Nepavyksta prisijungti ? <Link to="/password-reset" >Atstatyti slaptazodi</Link></p>
+            </div>
     </div>
     </form>
     </div> 

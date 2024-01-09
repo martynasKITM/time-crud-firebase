@@ -9,9 +9,10 @@ const Works = ()=>{
     const [user, loading, error] = useAuthState(auth);
     useEffect(()=>{
         if(loading) return;
+        if(user){
         service.getAllWorks(works=>
             setWorks(works), user
-        )
+        )}
     },[user, loading])
 
     console.log(works)

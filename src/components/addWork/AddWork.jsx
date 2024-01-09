@@ -16,7 +16,7 @@ const AddWork = ()=>{
         description:'',
         from:'',
         to:'',
-        uid:user.uid
+        uid:''
     })
 
     useEffect(()=>{
@@ -38,7 +38,10 @@ const AddWork = ()=>{
         if(id){
             service.updateWork(id,items);
         }else{
-            service.addWork(items);
+            service.addWork({
+                ...items,
+                uid:user.uid
+            });
         }
        
         navigate("/");
