@@ -1,15 +1,18 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import * as service from "../../services/services";
+import * as service from "../../services/TimesCrudServices";
 import WorksTable from "../worksTable/WorksTable";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../../services/AuthServices";
 const Works = ()=>{
     const [works, setWorks] = useState([]);
-
+    const [user, loading, error] = useAuthState(auth);
     useEffect(()=>{
-        service.getAllWorks(works=>{
-            setWorks(works)
-        })
-    },[])
+        if(loading) return;
+        service.getAllWorks(works=>
+            setWorks(works), user
+        )
+    },[user, loading])
 
     console.log(works)
     return(

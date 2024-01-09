@@ -1,9 +1,12 @@
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import * as service from "../../services/services";
+import * as service from "../../services/TimesCrudServices";
 import { useNavigate } from "react-router-dom";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../../services/AuthServices";
 
 const AddWork = ()=>{
+    const [user, loading, error] = useAuthState(auth);
     const navigate = useNavigate();
     const {id} = useParams();
     const [items, setItems] = useState({
@@ -12,7 +15,8 @@ const AddWork = ()=>{
         service:'',
         description:'',
         from:'',
-        to:''
+        to:'',
+        uid:user.uid
     })
 
     useEffect(()=>{
@@ -40,7 +44,6 @@ const AddWork = ()=>{
         navigate("/");
     }
 
- 
     return(
     <div className="card">
         <div className="card-header">
